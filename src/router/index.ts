@@ -1,5 +1,4 @@
-import HomeView from '@/views/HomeView.vue'
-import ProjectsView from '@/views/ProjectsView.vue'
+// import ProjectsView from '@/views/ProjectsView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Create a new routes instance
@@ -11,12 +10,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home ',
-      component: HomeView,
+      // This is a dynamic import that will only load the component when it is needed
+      component: () => import('@/views/HomeView.vue')
     },
     {
       path: '/projects',
       name: 'projects',
-      component: ProjectsView,
+      // This is a dynamic import that will only load the component when it is needed
+      component: () => import('@/views/ProjectsView.vue'),
     },
   ],
 })
