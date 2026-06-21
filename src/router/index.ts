@@ -1,5 +1,3 @@
-import HomeView from '@/views/HomeView.vue'
-import ProjectsView from '@/views/ProjectsView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Create a new routes instance
@@ -11,12 +9,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'home ',
-      component: HomeView,
+      component: () => import('@/views/HomeView.vue'),
     },
     {
       path: '/projects',
       name: 'projects',
-      component: ProjectsView,
+      component: () => import('@/views/ProjectsView.vue'),
+    },
+    {
+      // To use a dymanic url we need to use a wildcard with : like express
+      path: '/projects/:id',
+      name: 'single-project',
+      component: () => import('@/views/SingleProjectView.vue'),
     },
   ],
 })
