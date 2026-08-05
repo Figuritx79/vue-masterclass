@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
+import { useRoute } from 'vue-router'
 // This provide me with dynamic infomation about the current route
 const route = useRoute()
 </script>

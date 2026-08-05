@@ -1,3 +1,4 @@
+import { h } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Create a new routes instance
@@ -21,6 +22,15 @@ const router = createRouter({
       path: '/projects/:id',
       name: 'single-project',
       component: () => import('@/views/SingleProjectView.vue'),
+    },
+    {
+      // this is necessary to match not fount routes
+      path: '/:cathAll(.*)*',
+      // in this case is for a custom not found page for projects view, we can build a custom 404 page for any route
+      // path: '/projects:catchAll(.*)*'
+      name: 'NotFound',
+      // this is hyperscript in this case we can build html with the h function, first param is the tag, attributes and third the text
+      component: h('p', { style: 'color:red' }, '404 Not Found'),
     },
   ],
 })
