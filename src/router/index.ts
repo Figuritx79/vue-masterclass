@@ -1,6 +1,7 @@
 import { h } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
+// In vue we have to ways to work with routers. The first one is the tradicional router and the second one is file based routing
 // Create a new routes instance
 const router = createRouter({
   // Hisotry permit html five history mode(this is a browser history api ). This handle the navigation between pages without reloagin the page
