@@ -17,6 +17,7 @@
     "format": "prettier --write --experimental-cli src/",
     "supabase:init": "supabase init",
     "supabase:login": "supabase login",
+    "supabase:types": "supabase gen types typescript --project-id knlkzihlyaqlmepmxawi --schema public > database.types.ts",
     "migration:new": "supabase migration new",
     "db:reset": "supabase db reset --linked",
     "db:seed": "node --env-file=.env database/seed.ts"
