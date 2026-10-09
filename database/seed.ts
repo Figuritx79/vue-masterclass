@@ -15,7 +15,7 @@ const configs: Configs = {
 export default configs
 
 const { supabaseURL, serviceRoleKey } = configs
-export const supabaseClient = createClient(supabaseURL, serviceRoleKey)
+const supabaseClient = createClient(supabaseURL, serviceRoleKey)
 
 type Project = {
   id: UUID
@@ -24,8 +24,19 @@ type Project = {
   status: 'in-progress' | 'completed'
   collaborators: Array<string>
 }
+const logErrorAndExit = (tableName: string, error: any) => {
+  console.error(
+    `An error occurred in table '${tableName}' with code ${error.code}: ${error.message}`,
+  )
+  process.exit(1)
+}
 
-const seedProjects = async (numEntries: number) => {
+const logStep = (stepMessage: string) => {
+  console.log(stepMessage)
+}
+
+const seedProjects = async (numEntries: number): Promise<Array<any> | null> => {
+  logStep('Seeding projects...')
   const projects: Array<Project> = []
   for (let index = 0; index < numEntries; index++) {
     const name = faker.lorem.words(3)
@@ -38,15 +49,18 @@ const seedProjects = async (numEntries: number) => {
       status: faker.helpers.arrayElement(['in-progress', 'completed']),
       collaborators: faker.helpers.arrayElements(['1', '2', '3']),
     }
-    // console.log(project)
     projects.push(project)
   }
 
-  // console.log(projects)
-  const { error } = await supabaseClient.from('projects').insert(projects)
+  const { data, error } = await supabaseClient.from('projects').insert(projects).select('id')
 
-  if (error) {
-    throw error
-  }
+  if (error) return logErrorAndExit('Projects', error)
+  logStep('Projects seeded successfully.')
+  return data
 }
-await seedProjects(10)
+
+const seedDatabase = async (numEntriesPerTable: number) => {
+  await seedProjects(numEntriesPerTable)
+}
+const numEntriesPerTable = 10
+await seedDatabase(numEntriesPerTable)
