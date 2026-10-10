@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import('@/views/SingleProjectView.vue'),
     },
     {
+      path: '/tasks',
+      name: 'single-task',
+      component: () => import('@/views/TasksView.vue'),
+    },
+    {
       // this is necessary to match not fount routes
       path: '/:cathAll(.*)*',
       // in this case is for a custom not found page for projects view, we can build a custom 404 page for any route
