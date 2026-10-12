@@ -3,7 +3,7 @@
 // This hooks help with the component lifecycle, and we can use them to run code at specific points in the component's lifecycle
 import { supabaseClient } from '@/utils/supabase'
 import { ref } from 'vue'
-import type { Tables } from '../../database/types'
+import type { Tables } from '../../../database/types'
 
 const projects = ref<Tables<'projects'>[]>([])
 // In vue if we want to run a async function inside of a setup script we can use all the lifecycle hooks, but if we don't want to use them we can use a annonymous function and call it inside of the setup script, but this is not recommended because it can make the code harder to read and understand
