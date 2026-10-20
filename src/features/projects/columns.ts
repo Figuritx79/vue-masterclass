@@ -15,7 +15,7 @@ export const columns = columnHelper.columns([
     cell: ({ row }) => {
       return h(
         RouterLink,
-        { to: `/projects/${row.original.id}`, class: 'text-left font-medium' },
+        { to: `/projects/${row.original.slug}`, class: 'text-left font-medium hover:bg-muted' },
         () => row.getValue('name'),
       )
     },

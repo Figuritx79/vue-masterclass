@@ -6,6 +6,6 @@ const route = useRoute()
 <template>
   <div>
     <!-- To do intepolation we can use {{ }} -->
-    <h1>Project {{ route.params?.id }}</h1>
+    <h1>Project {{ route.params?.slug }}</h1>
   </div>
 </template>

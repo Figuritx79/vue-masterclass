@@ -59,3 +59,15 @@ const table = useTable({
     </Table>
   </div>
 </template>
+
+<!-- This style only aplies in this component -->
+<style scoped>
+/* This looks ugly but this work to highlight the rows  */
+/* @reference "@/style.css";
+td {
+  @apply p-0;
+}
+td > * {
+  @apply p-4;
+} */
+</style>
