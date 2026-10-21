@@ -9,30 +9,21 @@ import { columns } from '@/features/tasks/columns'
 
 const tasks = ref<Tables<'tasks'>[]>([])
 
-onMounted(async () => {
+const getTaks = async () => {
   const { data, error } = await supabaseClient.from('tasks').select()
   if (error) {
     console.error('Error fetching projects:', error)
   }
   tasks.value = data
-})
-// In vue if we want to run a async function inside of a setup script we can use all the lifecycle hooks, but if we don't want to use them we can use a annonymous function and call it inside of the setup script, but this is not recommended because it can make the code harder to read and understand
-// IIFE (Inmediately Invoked Funcition Expression )
-// ;(async () => {
-//   const { data, error } = await supabaseClient.from('projects').select()
-//   if (error) {
-//     console.error('Error fetching projects:', error)
-//     return []
-//   }
-//   projects.value = data
-// })()
+}
+
+await getTaks()
 </script>
 
 <template>
   <div>
     <!-- IN vue app in not recommed use an a tag, beacuse this reload the page  -->
     <!-- <a href="/">Home Page</a> -->
-    <RouterLink to="/"> Go to home </RouterLink>
     <div class="container py-10 mx-auto">
       <DataTable :columns="columns" :data="tasks" />
     </div>
