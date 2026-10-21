@@ -7,6 +7,7 @@ import type { Tables } from '../../../database/types'
 import Datatable from '@/features/shared/tables/Datatable.vue'
 import { columns } from '@/features/projects/columns'
 
+usePageStore().pageData.title = 'Projects'
 const projects = ref<Tables<'projects'>[]>([])
 // In vue if we want to run a async function inside of a setup script we can use all the lifecycle hooks, but if we don't want to use them we can use a annonymous function and call it inside of the setup script, but this is not recommended because it can make the code harder to read and understand
 // IIFE (Inmediately Invoked Funcition Expression )

@@ -2,11 +2,12 @@
 // In vue we have a lifecycle hook, OnMounted, OnUpdated, OnUnmounted, OnBeforeMount, OnBeforeUpdate, OnBeforeUnmount
 // This hooks help with the component lifecycle, and we can use them to run code at specific points in the component's lifecycle
 import { supabaseClient } from '@/utils/supabase'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import type { Tables } from '../../../database/types'
 import DataTable from '@/features/shared/tables/Datatable.vue'
 import { columns } from '@/features/tasks/columns'
 
+usePageStore().pageData.title = 'My tasks'
 const tasks = ref<Tables<'tasks'>[]>([])
 
 const getTaks = async () => {

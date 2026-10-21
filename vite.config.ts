@@ -26,12 +26,16 @@ export default defineConfig({
         // presets
         'vue',
         'vue-router',
+        {
+          pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdate'],
+        },
       ],
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
       dts: true,
       viteOptimizeDeps: true,
+      dirs: ['src/stores'],
     }),
   ],
   resolve: {
