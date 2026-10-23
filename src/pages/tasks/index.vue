@@ -11,7 +11,15 @@ usePageStore().pageData.title = 'My tasks'
 const tasks = ref<Tables<'tasks'>[]>([])
 
 const getTaks = async () => {
-  const { data, error } = await supabaseClient.from('tasks').select()
+  const { data, error } = await supabaseClient.from('tasks').select(`
+    *,
+    projects(
+     id,
+     name,
+     slug
+    )
+  `)
+  console.log(data)
   if (error) {
     console.error('Error fetching projects:', error)
   }

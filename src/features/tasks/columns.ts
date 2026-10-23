@@ -31,6 +31,16 @@ export const columns = columnHelper.columns([
   columnHelper.accessor('collaborators', {
     header: 'Collaborators',
   }),
+  columnHelper.accessor('projects', {
+    header: 'Project',
+    cell: ({ row }) => {
+      return h(
+        RouterLink,
+        { to: `/projects/${row.original.projects.slug}`, class: 'text-left font-medium hover:bg-muted' },
+        () => row.getValue('projects').name
+      )
+    },
+  }),
   columnHelper.accessor('status', {
     header: 'Status',
   }),
