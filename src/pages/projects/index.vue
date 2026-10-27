@@ -6,15 +6,17 @@ import { ref } from 'vue'
 import type { Tables } from '../../../database/types'
 import Datatable from '@/features/shared/tables/Datatable.vue'
 import { columns } from '@/features/projects/columns'
+import { projectsQuery } from '@/features/projects/supa-queries'
+import type { Projects } from '@/features/projects/supa-queries'
 
 usePageStore().pageData.title = 'Projects'
-const projects = ref<Tables<'projects'>[]>([])
+const projects = ref<Projects>([])
 // In vue if we want to run a async function inside of a setup script we can use all the lifecycle hooks, but if we don't want to use them we can use a annonymous function and call it inside of the setup script, but this is not recommended because it can make the code harder to read and understand
 // IIFE (Inmediately Invoked Funcition Expression )
 // ;(async () => {
 // })()
 const getProjects = async () => {
-  const { data, error } = await supabaseClient.from('projects').select()
+  const { data, error } = await  projectsQuery
   if (error) {
     console.error('Error fetching projects:', error)
     return []

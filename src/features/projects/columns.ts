@@ -1,10 +1,10 @@
 import { createColumnHelper } from '@tanstack/vue-table'
 import type { DataTableFeatures } from '../shared/tables/feature'
-import type { Tables } from '../../../database/types'
 import { h } from 'vue'
 import { RouterLink } from 'vue-router'
+import type { Projects } from './supa-queries'
 
-const columnHelper = createColumnHelper<DataTableFeatures, Tables<'projects'>>()
+const columnHelper = createColumnHelper<DataTableFeatures, Projects[0]>()
 
 export const columns = columnHelper.columns([
   columnHelper.accessor('id', {

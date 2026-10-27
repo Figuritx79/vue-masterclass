@@ -1,12 +1,12 @@
 // components/payments/columns.ts
 import { createColumnHelper } from '@tanstack/vue-table'
 import type { DataTableFeatures } from '../shared/tables/feature'
-import type { Tables } from '../../../database/types'
 import { h } from 'vue'
 import { RouterLink } from 'vue-router'
+import type { TasksWithProjects } from './types'
 
 // Use `accessor` for data columns and `display` for columns without one.
-const columnHelper = createColumnHelper<DataTableFeatures, Tables<'tasks'>>()
+const columnHelper = createColumnHelper<DataTableFeatures, TasksWithProjects[0]>()
 
 export const columns = columnHelper.columns([
   columnHelper.accessor('id', {
@@ -25,9 +25,6 @@ export const columns = columnHelper.columns([
   columnHelper.accessor('due_date', {
     header: 'Due Date',
   }),
-  // columnHelper.accessor('description', {
-  //   header: 'Description',
-  // }),
   columnHelper.accessor('collaborators', {
     header: 'Collaborators',
   }),
@@ -36,8 +33,11 @@ export const columns = columnHelper.columns([
     cell: ({ row }) => {
       return h(
         RouterLink,
-        { to: `/projects/${row.original.projects.slug}`, class: 'text-left font-medium hover:bg-muted' },
-        () => row.getValue('projects').name
+        {
+          to: `/projects/${row.original.projects?.slug}`,
+          class: 'text-left font-medium hover:bg-muted',
+        },
+        () => row.original.projects?.name,
       )
     },
   }),
