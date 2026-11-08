@@ -16,7 +16,7 @@ const projects = ref<Projects>([])
 // ;(async () => {
 // })()
 const getProjects = async () => {
-  const { data, error } = await  projectsQuery
+  const { data, error } = await projectsQuery
   if (error) {
     console.error('Error fetching projects:', error)
     return []
