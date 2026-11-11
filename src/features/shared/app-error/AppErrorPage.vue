@@ -1,23 +1,22 @@
-
 <script setup lang="ts">
-import { TriangleAlert } from '@lucide/vue';
+import { TriangleAlert } from '@lucide/vue'
 
-const router = useRouter();
+const router = useRouter()
 
 const errorStore = useErrorStore()
 const errors = ref(errorStore.activeError)
 const message = ref('')
 const customCode = ref(0)
 const details = ref('')
-const hint  = ref('')
+const hint = ref('')
 const code = ref('')
 const statusCode = ref(0)
-if (errors.value && !('code' in errors.value)){
+if (errors.value && !('code' in errors.value)) {
   message.value = errors.value.message
   customCode.value = errors.value.customCode || 0
 }
 
-if(errors.value && 'code' in errors.value){
+if (errors.value && 'code' in errors.value) {
   message.value = errors.value.message
   details.value = errors.value.details || ''
   hint.value = errors.value.hint || ''
@@ -28,25 +27,24 @@ if(errors.value && 'code' in errors.value){
 router.afterEach(() => {
   errorStore.activeError = null
 })
-
 </script>
 <template>
-	<section class="error">
-	    <div>
-	      <TriangleAlert class="error__icon"/>
-	      <h1 class="error__code">{{ customCode || code }}</h1>
-	      <p class="error__msg" v-if="statusCode">Status Code: {{ statusCode }}</p>
-	      <p class="error__msg">{{ message }}</p>
-	      <p  v-if="hint">{{ hint }}</p>
-	      <p  v-if="hint">{{ details }}</p>
-	      <div class="error-footer">
-	        <p class="error-footer__text">You'll find lots to explore on the home page.</p>
-	        <RouterLink to="/">
-	          <Button class="max-w-36"> Back to homepage </Button>
-	        </RouterLink>
-	      </div>
-	    </div>
-	  </section>
+  <section class="error">
+    <div>
+      <TriangleAlert class="error__icon" />
+      <h1 class="error__code">{{ customCode || code }}</h1>
+      <p class="error__msg" v-if="statusCode">Status Code: {{ statusCode }}</p>
+      <p class="error__msg">{{ message }}</p>
+      <p v-if="hint">{{ hint }}</p>
+      <p v-if="hint">{{ details }}</p>
+      <div class="error-footer">
+        <p class="error-footer__text">You'll find lots to explore on the home page.</p>
+        <RouterLink to="/">
+          <Button class="max-w-36"> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>

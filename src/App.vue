@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthLayout from '@/components/layout/main/AuthLayout.vue'
-import AppErrorPage from './features/shared/app-error/AppErrorPage.vue';
-const {activeError} = storeToRefs(useErrorStore())
+import AppErrorPage from './features/shared/app-error/AppErrorPage.vue'
+const { activeError } = storeToRefs(useErrorStore())
 </script>
 
 <template>
