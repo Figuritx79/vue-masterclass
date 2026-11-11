@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
-import { PaperclipIcon, ImageUp } from '@lucide/vue'
 import { Table, TableRow, TableCell, TableHead } from '@/components/ui/table'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { projectQuery, type Project } from '@/features/projects/supa-queries'

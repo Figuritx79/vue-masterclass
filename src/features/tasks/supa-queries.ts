@@ -6,7 +6,7 @@ export const tasksWithProjectsQuery = supabaseClient.from('tasks').select(`
      id,
      name,
      slug
-    ),
+    )
   `)
 
 export const taskQuery = (id: string) =>
@@ -19,7 +19,7 @@ export const taskQuery = (id: string) =>
         id,
         slug
       )
-      `,
+      `
     )
     .eq('id', id)
     .single()
