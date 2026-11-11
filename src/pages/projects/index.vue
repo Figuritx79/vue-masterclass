@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 // In vue we have a lifecycle hook, OnMounted, OnUpdated, OnUnmounted, OnBeforeMount, OnBeforeUpdate, OnBeforeUnmount
 // This hooks help with the component lifecycle, and we can use them to run code at specific points in the component's lifecycle
-import { supabaseClient } from '@/utils/supabase'
 import { ref } from 'vue'
-import type { Tables } from '../../../database/types'
 import Datatable from '@/features/shared/tables/Datatable.vue'
 import { columns } from '@/features/projects/columns'
 import { projectsQuery } from '@/features/projects/supa-queries'
@@ -16,10 +14,9 @@ const projects = ref<Projects>([])
 // ;(async () => {
 // })()
 const getProjects = async () => {
-  const { data, error } = await projectsQuery
+  const { data, error, status } = await projectsQuery
   if (error) {
-    console.error('Error fetching projects:', error)
-    return []
+    useErrorStore().setError({ error, customCode: status })
   }
   projects.value = data
 }
