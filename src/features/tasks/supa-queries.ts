@@ -19,7 +19,7 @@ export const taskQuery = (id: string) =>
         id,
         slug
       )
-      `
+      `,
     )
     .eq('id', id)
     .single()
